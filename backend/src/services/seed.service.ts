@@ -6,6 +6,7 @@ import { Role } from "../schemas/roles.schema";
 import { Department } from "../schemas/departaments.schema";
 import { Position } from "../schemas/positions.schema";
 import bcrypt from "bcrypt";
+import { Types } from "mongoose";
 
 export const seedDatabase = async () => {
   try {
@@ -81,7 +82,6 @@ export const seedDatabase = async () => {
         lastName: "Doe",
         positionId: insertedPositions[0]._id, // Software Engineer
         departmentId: insertedDepartments[0]._id, // IT
-        evaluations: [],
       },
       {
         userId: insertedUsers[1]._id, // Manager User
@@ -89,7 +89,6 @@ export const seedDatabase = async () => {
         lastName: "Smith",
         positionId: insertedPositions[1]._id, // Frontend Developer
         departmentId: insertedDepartments[0]._id, // IT
-        evaluations: [],
       },
       {
         userId: insertedUsers[2]._id, // Employee User
@@ -97,7 +96,6 @@ export const seedDatabase = async () => {
         lastName: "Johnson",
         positionId: insertedPositions[2]._id, // Backend Developer
         departmentId: insertedDepartments[0]._id, // IT
-        evaluations: [],
       },
     ];
     const insertedEmployees = await Employee.insertMany(employees);
@@ -108,14 +106,16 @@ export const seedDatabase = async () => {
       {
         employeeId: insertedEmployees[0]._id, // John Doe
         evaluatorId: insertedEmployees[1]._id, // Jane Smith
-        date: new Date(),
-        feedbacks: [],
+        score: 5,
+        initDate: new Date(),
+        feedbacks: [] as Types.ObjectId[],
       },
       {
         employeeId: insertedEmployees[1]._id, // Jane Smith
         evaluatorId: insertedEmployees[0]._id, // John Doe
-        date: new Date(),
-        feedbacks: [],
+        score: 4,
+        initDate: new Date(),
+        feedbacks: [] as Types.ObjectId[],
       },
     ];
     const insertedEvaluations = await Evaluation.insertMany(evaluations);
@@ -126,15 +126,19 @@ export const seedDatabase = async () => {
       {
         evaluationId: insertedEvaluations[0]._id, // Evaluación de John Doe
         comments: "Great work on the project.",
-        score: 5,
       },
       {
         evaluationId: insertedEvaluations[1]._id, // Evaluación de Jane Smith
         comments: "Needs improvement on communication.",
-        score: 3,
       },
     ];
     const insertedFeedbacks = await Feedback.insertMany(feedbacks);
+
+    // Asociar feedbacks a las evaluaciones
+    insertedEvaluations[0].feedbacks.push(insertedFeedbacks[0]._id);
+    insertedEvaluations[1].feedbacks.push(insertedFeedbacks[1]._id);
+    await insertedEvaluations[0].save();
+    await insertedEvaluations[1].save();
 
     console.log("Feedbacks seeded successfully.");
     console.log("Seeding completed.");

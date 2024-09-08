@@ -9,7 +9,6 @@ const feedbackSchema = new Schema<IFeedback>(
       required: true,
     },
     comments: { type: String, trim: true, required: true },
-    score: { type: Number, trim: true, min: 1, max: 5, required: true },
   },
   { timestamps: true }
 );
