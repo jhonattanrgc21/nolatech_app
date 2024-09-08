@@ -1,7 +1,5 @@
 // Modules
 import { Router } from "express";
-import { authMiddleware } from "../middlewares/authMiddleware";
-import { verifyRole } from "../middlewares/roleMiddleware";
 import {
   getAllEmployees,
   getEmployeeById,
@@ -9,18 +7,7 @@ import {
 
 const employeeRouter = Router();
 
-employeeRouter.get(
-  "/",
-  authMiddleware,
-  verifyRole(["Admin", "Manager"]),
-  getAllEmployees
-);
-
-employeeRouter.get(
-  "/:id",
-  authMiddleware,
-  verifyRole(["Admin", "Manager"]),
-  getEmployeeById
-);
+employeeRouter.get("/", getAllEmployees);
+employeeRouter.get( "/:id", getEmployeeById);
 
 export default employeeRouter;
