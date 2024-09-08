@@ -3,7 +3,7 @@ import { IFeedback } from "../interfaces/feedbacks.interface";
 
 const feedbackSchema = new Schema<IFeedback>(
   {
-    evaluation: {
+    evaluationId: {
       type: Schema.Types.ObjectId,
       ref: "Evaluation",
       required: true,

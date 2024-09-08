@@ -2,6 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import routes from './routes/index.routes';
 
 
 // ======================================
@@ -17,6 +18,9 @@ export default function App(){
 
 	// Configurar cabeceras y cors
 	app.use(cors());
+
+	// Configuracion de rutas
+	app.use('/api', routes);
 
 	return app;
 }

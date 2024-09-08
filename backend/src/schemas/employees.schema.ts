@@ -3,11 +3,11 @@ import { IEmployee } from "../interfaces/employees.interface";
 
 const employeeSchema = new Schema<IEmployee>(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     firstName: { type: String, trim: true, required: true },
     lastName: { type: String, trim: true, required: true },
-    position: { type: Schema.Types.ObjectId, ref: "Position", required: true },
-    department: {
+    positionId: { type: Schema.Types.ObjectId, ref: "Position", required: true },
+    departmentId: {
       type: Schema.Types.ObjectId,
       ref: "Department",
       required: true,
