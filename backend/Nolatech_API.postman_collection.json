@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "cec82124-64eb-4c7f-8ebf-2e9302c96ba9",
+		"name": "Nolatech API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12619552"
+	},
+	"item": [
+		{
+			"name": "Seeders",
+			"item": [
+				{
+					"name": "Cargar data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/seed"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Registro de usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"email\": \"jhonattanrgc21@gmail.com\", \r\n    \"password\":\"admin123\", \r\n    \"roleId\":\"66dd045dd36a9cbf055c6c7a\", \r\n    \"employeeData\": {\r\n        \"firstName\": \"Jhonattan\", \r\n        \"lastName\": \"Garcia\",\r\n        \"positionId\":\"66dd045dd36a9cbf055c6c82\", \r\n        \"departmentId\": \"66dd045dd36a9cbf055c6c7c\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/auth/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Consultar lista de empleados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/employees/"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar empleado por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/employees/undefined"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evaluaciones",
+			"item": [
+				{
+					"name": "Consultar una evaluacion por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/evaluations/66dd045ed36a9cbf055c6c92"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar una evaluacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"employeeId\": \"66dd13885ba24433cb3aaba2\", \r\n  \"evaluatorId\": \"66dd045ed36a9cbf055c6c8f\", \r\n  \"score\": 4,\r\n    \"feedbacks\": [\r\n    {\r\n      \"comments\": \"Debe mejorar haciendo pruebas.\"\r\n    }\r\n  ],\r\n  \"initDate\": \"2024-09-07T00:00:00Z\",\r\n  \"endDate\": \"2024-09-14T00:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/evaluations/"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar evaluacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"feedbacks\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/evaluations/66dd1ca68114048ad146b538"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmRkZmY4Y2I2NDNkMGY1Mjk4ZjI4YTQiLCJyb2xlIjoiNjZkZGZmOGNiNjQzZDBmNTI5OGYyODkyIiwiaWF0IjoxNzI1ODQyMDQwLCJleHAiOjE3MjU4NDU2NDB9.Xjxhp6gn_LvmoA5YAv3RyaYM535Qfew1GvjqjYOtRJo",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		}
+	]
+}

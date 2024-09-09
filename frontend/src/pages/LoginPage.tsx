@@ -30,6 +30,7 @@ const Login: React.FC = () => {
         >
           <input
             type="text"
+            value="admin@example.com"
             {...register("email", { required: true })}
             placeholder="Correo Electrónico"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
@@ -37,6 +38,7 @@ const Login: React.FC = () => {
           {errors.email && <p className="text-red-500 text-sm">El correo es requerido</p>}
           <input
             type="password"
+            value="admin123"
             {...register("password", { required: true })}
             placeholder="Contraseña"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
