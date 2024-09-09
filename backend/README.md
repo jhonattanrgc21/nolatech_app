@@ -13,14 +13,27 @@ npm i
 docker-compose up -d
 ```
 
-5. Ejecutar el API
+5. Generar archivo .env
+```
+cp .env.example .env
+```
+
+6. Configurar el .env como en el seguiente ejemplo
+```
+MONGODB_URI=mongodb://localhost:27017/nolatech
+NODE_PORT=3000
+JWT_SECRET=secret
+```
+
+
+7. Ejecutar el API
 ```
 npm run dev
 ```
 
-6. Cargar la coleccion de endpoints en postman mediante el archivo Nolatech_API.postman_collection.json
+8. Cargar la coleccion de endpoints en postman mediante el archivo Nolatech_API.postman_collection.json
 
-7. Generar la data de prueba
+9. Generar la data de prueba
 ```
 http://localhost:3000/api/seed
 ```

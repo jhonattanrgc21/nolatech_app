@@ -8,4 +8,6 @@ Este repositorio almacena la prueba técnica de la empresa Nolatech, la cual con
 * React + Vite
 * Node.js
 * TypeScript
+* Tailwind CSS
+
 
