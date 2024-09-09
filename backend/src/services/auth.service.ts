@@ -4,8 +4,10 @@ import { User } from "../schemas/users.schema";
 import { Employee } from "../schemas/employees.schema";
 import { Department } from "../schemas/departaments.schema";
 import { Position } from "../schemas/positions.schema";
+import { UserRegister } from "../interfaces/user-register.interface";
+import { LoginRequest } from "../interfaces/login.interface";
 
-export const createUser = async (userData: any) => {
+export const createUser = async (userData: UserRegister) => {
   const { email, password, roleId, employeeData } = userData;
   const { firstName, lastName, positionId, departmentId } = employeeData;
 
@@ -38,7 +40,7 @@ export const createUser = async (userData: any) => {
   await employee.save();
 };
 
-export const login = async (loginData: any) => {
+export const login = async (loginData: LoginRequest) => {
   const { email, password } = loginData;
 
   // Verificar si el usuario existe
@@ -63,5 +65,5 @@ export const login = async (loginData: any) => {
   const employee = await Employee.findOne({ userId: user._id });
   const fullName = employee ? `${employee.firstName} ${employee.lastName}` : '';
 
-  return { token, userId: user._id, role: user.roleId, fullName };
+  return { token, userId: user._id, roleId: user.roleId, fullName };
 };

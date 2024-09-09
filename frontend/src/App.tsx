@@ -1,14 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/sign-in" element={<h1>Login</h1>} />
-        <Route path="/dashboard" element={<h1>dashboard</h1>} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
 
